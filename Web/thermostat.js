@@ -8,43 +8,54 @@ $(document).ready(function () {
         var timer;
         if (mode === true) {
             document.getElementById("heat").style.fill = '#FF3D00'; // Deep Orange A400
-            // add 'on' to heatState span
+            // change to heatState span
             document.getElementById("heatState").innerHTML = "HEAT ON";
             // fade in and out 'heat on' message
             $("#heatState").stop(true, true).fadeIn('fast');
-            timer = setTimeout(function (){
+            timer = setTimeout(function () {
                 $("#heatState").stop(true, true).fadeOut('fast');
-            }, 2*1000);
+            }, 2 * 1000);
         } else {
             clearTimeout(timer);
             document.getElementById("heat").style.fill = '#AFAFAF';
-            // add 'off' to heatState span
+            // change heatState span
             document.getElementById("heatState").innerHTML = "";
         }
     }
-    /*function fanState(mode) {
-        if (mode === true) {
-            document.getElementById("fan").style.fill = '#fff';
-        } else {
-            document.getElementById("fan").style.fill = '#afafaf';
-        }
-    }*/
     function coolState(mode) {
         var timer;
         if (mode === true) {
             document.getElementById("cool").style.fill = '#448AFF'; // Blue A200
-            // add 'on' to coolState span
+            // change coolState span
             document.getElementById("coolState").innerHTML = "A/C ON";
             // fade in and out 'cool on' message
             $("#coolState").stop(true, true).fadeIn('fast');
-            timer = setTimeout(function (){
+            timer = setTimeout(function () {
                 $("#coolState").stop(true, true).fadeOut('fast');
-            }, 2*1000);
+            }, 2 * 1000);
         } else {
             clearTimeout(timer);
             document.getElementById("cool").style.fill = '#AFAFAF';
-            // add 'off' to coolState span
+            // change coolState span
             document.getElementById("coolState").innerHTML = "";
+        }
+    }
+    function offState(mode) {
+        var timer;
+        if (mode === true) {
+            document.getElementById("off").style.fill = '#4CAF50'; // Light Green 500
+            // change offState span
+            document.getElementById("offState").innerHTML = "AIR OFF";
+            // fade in and out 'cool on' message
+            $("#offState").stop(true, true).fadeIn('fast');
+            timer = setTimeout(function () {
+                $("#offState").stop(true, true).fadeOut('fast');
+            }, 2 * 1000);
+        } else {
+            clearTimeout(timer);
+            document.getElementById("off").style.fill = '#AFAFAF';
+            // change coolState span
+            document.getElementById("offState").innerHTML = "";
         }
     }
 
@@ -72,6 +83,7 @@ $(document).ready(function () {
         var mode = 2;
         heatState(true);
         coolState(false);
+        offState(false);
         $.post('modeupdate.php', {
             "data": mode
         });
@@ -81,20 +93,21 @@ $(document).ready(function () {
         var mode = 1;
         coolState(true);
         heatState(false);
+        offState(false);
         $.post('modeupdate.php', {
             "data": mode
         });
     }
 
-    /*function setModeOff() {
+    function setModeOff() {
         var mode = 0;
-        buttonSetStyle("off");
-        buttonResetStyle("cool");
-        buttonResetStyle("heat");
+        offState(true);
+        coolState(false);
+        heatState(false);
         $.post('modeupdate.php', {
             "data": mode
         });
-    }*/
+    }
 
     // fetches dtemp value from file
     $.get("thermo/dtemp", function (data) {
@@ -112,7 +125,7 @@ $(document).ready(function () {
         } else if (mode === "1") {
             coolState(true);
         } else if (mode === "0") {
-            // nothing goes here
+            offState(true);
         }
     });
 
@@ -158,7 +171,7 @@ $(document).ready(function () {
         }
     });
 
-    /*$("#off").on("click touchstart", function (e) {
+    $("#off").on("click touchstart", function (e) {
         if (e.type === "click") {
             setModeOff();
             e.preventDefault();
@@ -166,7 +179,7 @@ $(document).ready(function () {
             setModeOff();
             e.preventDefault();
         }
-    });*/
+    });
 
     $(document).keydown(function (e) {
         var code = e.which;
@@ -178,8 +191,10 @@ $(document).ready(function () {
             setModeHeat();
         } else if (code === 50) { // '3' is pressed turn on ac
             setModeCool();
+        } else if (code === 51) {
+            setModeOff();
         } else if (code === 79) { // 'o' is pressed turn off air
-            //setModeOff();
+            setModeOff();
         } else if (code === 72) { // 'h' is pressed turn on heat
             setModeHeat();
         } else if (code === 67) { // 'c' is pressed turn on ac

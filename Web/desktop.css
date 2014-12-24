@@ -63,8 +63,11 @@ span {
     display: none;
 }
 #heatState {
-    color: #FF8A80;
+    color: #FF8A80; /* Red A100 */
 }
 #coolState {
-    color: #82B1FF;
+    color: #82B1FF; /* Blue A100 */
+}
+#offState {
+    color: #8BC34A; /* Light Green 500 */
 }
