@@ -2,7 +2,8 @@ html body{
     width: 100%;
     margin: 0;
     text-align: center;
-    font-family: Helvetica;
+    font-family: Arimo, Helvetica, sans-serif;
+    background: #eee;
 }
 #temp{
     margin: 3% auto 0 auto;
@@ -12,7 +13,7 @@ html body{
     vertical-align: middle;
 }
 #ctemp{
-    font-size: 120pt;
+    font-size: 100pt;
     padding: 0 .05em 0 0;
     display: inline-block;
     position: relative;
@@ -24,8 +25,13 @@ html body{
 #dtemp{
     font-size: 60pt;
 }
-#mode{
-    padding-top: 3em;
+div .mode{
+    padding-top: 2.5em;
+}
+.mode{
+    width: 2.5em;
+    height: 2.5em;
+    padding: 0 .9em;
 }
 #arrow-up {
 	width: 0;
@@ -34,6 +40,7 @@ html body{
 	border-right: 50px solid transparent;
 	border-bottom: 50px solid #2196F3;
     margin-bottom: -.2em;
+    position: relative;
     cursor: pointer;
     -webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;

@@ -1,15 +1,25 @@
 $(document).ready(function () {
 
-    function buttonResetStyle(mode) {
-        document.getElementById(mode).style.color = '#fff';
-        document.getElementById(mode).style.background = '#2196F3';
-        document.getElementById(mode).style.borderColor = '#2196F3';
+    function heatState(mode) {
+        if (mode === true) {
+            document.getElementById("heat").style.fill = '#a00';
+        } else {
+            document.getElementById("heat").style.fill = '#afafaf';
+        }
     }
-
-    function buttonSetStyle(mode) {
-        document.getElementById(mode).style.color = '#2196F3';
-        document.getElementById(mode).style.background = '#fff';
-        document.getElementById(mode).style.borderColor = '#2196F3';
+    function fanState(mode) {
+        if (mode === true) {
+            document.getElementById("fan").style.fill = '#fff';
+        } else {
+            document.getElementById("fan").style.fill = '#afafaf';
+        }
+    }
+    function coolState(mode) {
+        if (mode === true) {
+            document.getElementById("cool").style.fill = '#03a';
+        } else {
+            document.getElementById("cool").style.fill = '#afafaf';
+        }
     }
 
     // increase dtemp
@@ -34,9 +44,8 @@ $(document).ready(function () {
 
     function setModeHeat() {
         var mode = 2;
-        buttonSetStyle("heat");
-        buttonResetStyle("cool");
-        buttonResetStyle("off");
+        heatState(true);
+        coolState(false);
         $.post('modeupdate.php', {
             "data": mode
         });
@@ -44,15 +53,14 @@ $(document).ready(function () {
 
     function setModeCool() {
         var mode = 1;
-        buttonSetStyle("cool");
-        buttonResetStyle("heat");
-        buttonResetStyle("off");
+        coolState(true);
+        heatState(false);
         $.post('modeupdate.php', {
             "data": mode
         });
     }
 
-    function setModeOff() {
+    /*function setModeOff() {
         var mode = 0;
         buttonSetStyle("off");
         buttonResetStyle("cool");
@@ -60,7 +68,7 @@ $(document).ready(function () {
         $.post('modeupdate.php', {
             "data": mode
         });
-    }
+    }*/
 
     // fetches dtemp value from file
     $.get("thermo/dtemp", function (data) {
@@ -74,11 +82,11 @@ $(document).ready(function () {
 
     $.get("thermo/mode", function (mode) {
         if (mode === "2") {
-            buttonSetStyle("heat");
+            heatState(true);
         } else if (mode === "1") {
-            buttonSetStyle("cool");
+            coolState(true);
         } else if (mode === "0") {
-            buttonSetStyle("off");
+            // nothing goes here
         }
     });
 
@@ -124,7 +132,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#off").on("click touchstart", function (e) {
+    /*$("#off").on("click touchstart", function (e) {
         if (e.type === "click") {
             setModeOff();
             e.preventDefault();
@@ -132,7 +140,7 @@ $(document).ready(function () {
             setModeOff();
             e.preventDefault();
         }
-    });
+    });*/
 
     $(document).keydown(function (e) {
         var code = e.which;
@@ -142,12 +150,10 @@ $(document).ready(function () {
             decrease();
         } else if (code === 49) { // '1' is pressed turn on heat
             setModeHeat();
-        } else if (code === 50) { // '2' is pressed turn off air
-            setModeOff();
-        } else if (code === 51) { // '3' is pressed turn on ac
+        } else if (code === 50) { // '3' is pressed turn on ac
             setModeCool();
         } else if (code === 79) { // 'o' is pressed turn off air
-            setModeOff();
+            //setModeOff();
         } else if (code === 72) { // 'h' is pressed turn on heat
             setModeHeat();
         } else if (code === 67) { // 'c' is pressed turn on ac
