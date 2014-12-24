@@ -58,26 +58,12 @@ div .mode{
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
 }
-button /* transparent background, white text and border */
-{
-    border: 3px solid #2196F3;
-	color: #FFF;
-	font-family: inherit;
-	font-size: 16pt;
-	background: #2196F3;
-	cursor: pointer;
-	padding: .5em;
-	display: inline-block;
-	margin: 0 .1em;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	outline: none;
-	position: relative;
-	-webkit-transition: all .2s cubic-bezier(.4,0,.2,1);
-	-moz-transition: all .2s cubic-bezier(.4,0,.2,1);
-	transition: all .2s cubic-bezier(.4,0,.2,1);
+span {
+    display: none;
 }
-button:hover {
-    box-shadow: 4px 4px 7px #888;
-    z-index: 1;
+#heatState {
+    color: #FF8A80;
+}
+#coolState {
+    color: #82B1FF;
 }

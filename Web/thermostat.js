@@ -1,24 +1,50 @@
+/*
+    Google Material Design Color Palette
+    http://www.google.com/design/spec/style/color.html#color-color-palette
+*/
 $(document).ready(function () {
 
     function heatState(mode) {
+        var timer;
         if (mode === true) {
-            document.getElementById("heat").style.fill = '#a00';
+            document.getElementById("heat").style.fill = '#FF3D00'; // Deep Orange A400
+            // add 'on' to heatState span
+            document.getElementById("heatState").innerHTML = "HEAT ON";
+            // fade in and out 'heat on' message
+            $("#heatState").stop(true, true).fadeIn('fast');
+            timer = setTimeout(function (){
+                $("#heatState").stop(true, true).fadeOut('fast');
+            }, 2*1000);
         } else {
-            document.getElementById("heat").style.fill = '#afafaf';
+            clearTimeout(timer);
+            document.getElementById("heat").style.fill = '#AFAFAF';
+            // add 'off' to heatState span
+            document.getElementById("heatState").innerHTML = "";
         }
     }
-    function fanState(mode) {
+    /*function fanState(mode) {
         if (mode === true) {
             document.getElementById("fan").style.fill = '#fff';
         } else {
             document.getElementById("fan").style.fill = '#afafaf';
         }
-    }
+    }*/
     function coolState(mode) {
+        var timer;
         if (mode === true) {
-            document.getElementById("cool").style.fill = '#03a';
+            document.getElementById("cool").style.fill = '#448AFF'; // Blue A200
+            // add 'on' to coolState span
+            document.getElementById("coolState").innerHTML = "A/C ON";
+            // fade in and out 'cool on' message
+            $("#coolState").stop(true, true).fadeIn('fast');
+            timer = setTimeout(function (){
+                $("#coolState").stop(true, true).fadeOut('fast');
+            }, 2*1000);
         } else {
-            document.getElementById("cool").style.fill = '#afafaf';
+            clearTimeout(timer);
+            document.getElementById("cool").style.fill = '#AFAFAF';
+            // add 'off' to coolState span
+            document.getElementById("coolState").innerHTML = "";
         }
     }
 
