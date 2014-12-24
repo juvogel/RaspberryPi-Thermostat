@@ -1,21 +1,57 @@
-body{
-    width: 430px;
-    margin: 50px auto 0 auto;
+html body{
+    width: 100%;
+    margin: 0;
     text-align: center;
     font-family: Helvetica;
 }
+#temp{
+    margin: 3% auto 0 auto;
+    align-content: center;
+}
+#temp #ctemp, #temp #change{
+    vertical-align: middle;
+}
 #ctemp{
     font-size: 160pt;
-    padding-right: .2em;
-    float: left;
-    margin-top: 18px;
+    padding: 0 .1em;
+    display: inline-block;
+    position: relative;
+}
+#change{
+    display: inline-block;
+    padding: 0 .1em;
 }
 #dtemp{
     font-size: 100pt;
-    margin: -10px auto;
 }
 #mode{
     padding-top: 3em;
+}
+#arrow-up {
+	width: 0;
+	height: 0;
+	border-left: 70px solid transparent;
+	border-right: 70px solid transparent;
+	border-bottom: 70px solid #2196F3;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: -.7em;
+    -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+#arrow-down {
+	width: 0;
+	height: 0;
+	border-left: 70px solid transparent;
+	border-right: 70px solid transparent;
+	border-top: 70px solid #2196F3;
+    position: relative;
+    margin-top: -.7em;
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
 }
 button /* transparent background, white text and border */
 {
@@ -27,8 +63,7 @@ button /* transparent background, white text and border */
 	cursor: pointer;
 	padding: .5em;
 	display: inline-block;
-	margin: 0 auto;
-    margin-left: 10px;
+	margin: 0 .2em;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	outline: none;
@@ -40,30 +75,4 @@ button /* transparent background, white text and border */
 button:hover {
     box-shadow: 4px 4px 7px #888;
     z-index: 1;
-}
-#arrow-up {
-	width: 0;
-	height: 0;
-	border-left: 75px solid transparent;
-	border-right: 75px solid transparent;
-	border-bottom: 75px solid #2196F3;
-    position: relative;
-    cursor: pointer;
-    margin-left: 281px;
-    -webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
-}
-#arrow-down {
-	width: 0;
-	height: 0;
-	border-left: 75px solid transparent;
-	border-right: 75px solid transparent;
-	border-top: 75px solid #2196F3;
-    position: relative;
-    cursor: pointer;
-    margin-left: 281px;
-    -webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
 }
